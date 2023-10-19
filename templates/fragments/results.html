@@ -1,0 +1,18 @@
+<ul>
+  {{range .Results}}
+  <li>
+    <h3>{{.Name}}</h3>
+    <button
+      name="ticker"
+      value="{{.Ticker}}"
+      hx-post="/stock/"
+      hx-indicator="#spinner"
+      hx-target="#stock-list"
+      hx-swap="beforeend">
+        <span id="spinner">...</span> Add
+    </button>
+  </li>
+  {{end}}
+</ul>
+
+

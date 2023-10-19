@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awesome</title>
+  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+  <link rel="stylesheet" href="/static/index.css"/>
+</head>
+<body>
+<main>
+  <header>
+    <ul id="stock-list">
+      {{ range .Stocks }}
+      {{ block "stock-element" .}}
+      <li>
+        <h5><strong>${{ .Price }}</strong> {{ .Ticker }}</h5>
+        <h6>{{ .Name }}</h6>
+      </li>
+      {{ end }}
+      {{ end }}
+    </ul>
+  </header>
+
+  <section>
+    <div>
+      <input type="search" name="key" placeholder="Search..."
+             hx-get="/search"
+             hx-trigger="keyup changed delay:500ms"
+             hx-target="#search-results"/>
+    </div>
+
+    <div id="search-results"></div>
+  </section>
+</main>
+</body>
+</html>
